@@ -7,14 +7,14 @@ dotenv.config();
 
 const serverPort = process.env.PORT;
 
-const startServer = () => {
+async function startServer() {
   const server = express();
 
-  loaders(server, mongoose);
+  await loaders(server, mongoose);
 
   server.listen(serverPort, () =>
     console.log(`Babble Network API Service started at ${serverPort}`)
   );
-};
+}
 
 startServer();

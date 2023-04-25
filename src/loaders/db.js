@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const mongooseLoader = (mongoose) => {
+async function mongooseLoader(mongoose){
   mongoose.connect(process.env.MONGOOSE_CONNECTION_STRING);
 
   mongoose.connection.once("open", () =>
@@ -9,5 +9,3 @@ const mongooseLoader = (mongoose) => {
 };
 
 export default mongooseLoader
-
-

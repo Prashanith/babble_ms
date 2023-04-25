@@ -3,7 +3,7 @@ import mongooseLoader from "./db.js";
 import loadServer from "./server.js";
 
 async function loaders(app, mongoose) {
-  mongooseLoader(mongoose);
+  await mongooseLoader(mongoose);
   loadServer(app);
 }
 
