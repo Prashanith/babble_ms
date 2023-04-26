@@ -3,7 +3,7 @@ import { Router } from "express";
 import {
   loginUser,
   registerUser,
-} from "./../../../services/ids/identityService.js";
+} from "../../../services/ids/idService.js";
 import { HttpResponse } from "../../../models/http/response.js";
 
 const router = Router();
