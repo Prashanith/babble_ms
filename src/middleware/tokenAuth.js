@@ -12,17 +12,17 @@ function tokenAuth(request, response, next) {
           if (err) {
             return HttpResponse.toUnauthorizedError(response);
           } else {
-            //request['user']['id'] = digest.id;
+            request.body["context"] = { id: digest.id };
           }
         }
       );
+      next();
     } else {
       return HttpResponse.toUnauthorizedError(response);
     }
   } catch (error) {
+    console.log(error);
     return HttpResponse.toInternalServerError(response);
-  }finally{
-    next();
   }
 }
 
