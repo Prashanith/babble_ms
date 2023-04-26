@@ -1,15 +1,29 @@
 import jwt from "jsonwebtoken";
+import { HttpResponse } from "../models/http/response.js";
 
-async function tokenAuth(request, response, next) {
-  const authToken = String(request.headers["authorization"]).split()[1];
-  console.log("Verifying");
-  //   if (authToken) {
-
-  //     jwt.verify();
-  //   } else {
-
-  //   }
-  next();
+function tokenAuth(request, response, next) {
+  try {
+    const authToken = String(request.headers["authorization"]).split(" ")[1];
+    if (authToken) {
+      const res = jwt.verify(
+        authToken,
+        process.env.ACCESS_TOKEN_SECRET,
+        function (err, digest) {
+          if (err) {
+            return HttpResponse.toUnauthorizedError(response);
+          } else {
+            //request['user']['id'] = digest.id;
+          }
+        }
+      );
+    } else {
+      return HttpResponse.toUnauthorizedError(response);
+    }
+  } catch (error) {
+    return HttpResponse.toInternalServerError(response);
+  }finally{
+    next();
+  }
 }
 
 export default tokenAuth;
