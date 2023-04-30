@@ -5,7 +5,7 @@ function tokenAuth(request, response, next) {
   try {
     const authToken = String(request.headers["authorization"]).split(" ")[1];
     if (authToken) {
-      const res = jwt.verify(
+      jwt.verify(
         authToken,
         process.env.ACCESS_TOKEN_SECRET,
         function (err, digest) {
