@@ -1,7 +1,7 @@
 import mongooseLoader from "./db";
 import loadServer from "./server";
 
-async function initialize(app: Express, mongoose) {
+async function initialize(app, mongoose) {
   await mongooseLoader(mongoose);
   loadServer(app);
 }
