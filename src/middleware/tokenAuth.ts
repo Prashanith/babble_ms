@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { HttpResponse } from "../models/http/response.js";
+import { HttpResponse } from "../models/http/response";
 
 function tokenAuth(request, response, next) {
   try {

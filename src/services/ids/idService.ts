@@ -1,11 +1,11 @@
-import { HttpResponse } from "../../models/http/response.js";
-import { users } from "../../models/user/user.js";
+import { HttpResponse } from "../../models/http/response";
+import { users } from "../../models/user/user";
 import {
   hashPassword,
   verifyHash,
   filterUserObject,
   generateAccessToken,
-} from "../../utils/utils.js";
+} from "../../utils/utils";
 
 async function loginUser(email, password, response) {
   try {

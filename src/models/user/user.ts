@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
-import validator from "../../constants/validator.js";
-import globals from "./../globals/globals.js";
+import validator from "../../constants/validator";
+import globals from "./../globals/globals";
 
 const UserEntity = mongoose.Schema({
   name: {

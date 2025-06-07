@@ -3,8 +3,8 @@ import { Router } from "express";
 import {
   loginUser,
   registerUser,
-} from "../../../services/ids/idService.js";
-import { HttpResponse } from "../../../models/http/response.js";
+} from "../../../services/ids/idService";
+import { HttpResponse } from "../../../models/http/response";
 
 const router = Router();
 
