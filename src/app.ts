@@ -1,8 +1,8 @@
 import express from "express";
 import dotenv from "dotenv";
-import initialize from "./initializers/initialize";
+import initialize from "./initializers/initialize.ts";
 import mongoose from "mongoose";
-import { secrets } from "./utils/envUtils";
+import { secrets } from "./utils/envUtils.ts";
 
 dotenv.config();
 
