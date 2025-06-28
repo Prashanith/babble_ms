@@ -1,6 +1,6 @@
 import express from "express";
-import userRouter from "./routes/user/userRouter";
-import authRouter from "./routes/ids/identityServiceRouter";
+import userRouter from "./routes/user/userRouter.ts";
+import authRouter from "./routes/ids/identityServiceRouter.ts";
 
 const api = () => {
   const router = express.Router();

@@ -1,7 +1,7 @@
 import { Mongoose } from "mongoose";
-import { secrets } from "../utils/envUtils";
+import { secrets } from "../utils/envUtils.ts";
 
-async function mongooseLoader(mongoose:Mongoose) {
+async function mongooseLoader(mongoose: Mongoose) {
   mongoose.connect(secrets.MONGOOSE_CONNECTION_STRING);
 
   mongoose.connection
