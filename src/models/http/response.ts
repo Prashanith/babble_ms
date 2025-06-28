@@ -1,6 +1,6 @@
 /* eslint-disable no-debugger */
-import { HttpError } from "./error";
-import { ResponseCodes } from "../../constants/codes";
+import { HttpError } from "./error.ts";
+import { ResponseCodes } from "../../constants/codes.ts";
 
 class HttpResponse {
   constructor(data, error) {
@@ -15,7 +15,7 @@ class HttpResponse {
     };
   }
 
-  static toInternalServerError(response, message = null) {
+  static toInternalServerError(response:Response, message = null) {
     var error = new HttpError(
       ResponseCodes.BB500,
       message ? message : "Internal Server Error"
@@ -38,7 +38,7 @@ class HttpResponse {
     return response.status(200).json(res);
   }
 
-  static toUnauthorizedError(response,message = null) {
+  static toUnauthorizedError(response, message = null) {
     var error = new HttpError(
       ResponseCodes.BB401,
       message ? message : "Authorization Error Occurred"
