@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import { Router, request } from "express";
-import tokenAuth from "../../../middleware/tokenAuth.js";
+import tokenAuth from "../../../middleware/tokenAuth";
 
 const router = Router();
 

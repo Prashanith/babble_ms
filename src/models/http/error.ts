@@ -8,7 +8,7 @@ class HttpError {
       code:this.code,
       message:this.message
     };
-  };
+  }
 }
 
 export { HttpError };

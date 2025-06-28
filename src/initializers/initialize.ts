@@ -1,6 +1,5 @@
-import express from "express";
-import mongooseLoader from "./db.js";
-import loadServer from "./server.js";
+import mongooseLoader from "./db";
+import loadServer from "./server";
 
 async function initialize(app, mongoose) {
   await mongooseLoader(mongoose);

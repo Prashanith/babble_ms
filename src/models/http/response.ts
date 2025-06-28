@@ -1,6 +1,6 @@
 /* eslint-disable no-debugger */
-import { HttpError } from "./error.js";
-import { ResponseCodes } from "../../constants/codes.js";
+import { HttpError } from "./error";
+import { ResponseCodes } from "../../constants/codes";
 
 class HttpResponse {
   constructor(data, error) {
