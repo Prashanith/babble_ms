@@ -1,15 +1,17 @@
 /* eslint-disable no-unused-vars */
-import { Router, request } from "express";
-import tokenAuth from "../../../middleware/tokenAuth";
+import tokenAuth from "../../../middleware/tokenAuth.ts";
+import { NextFunction, Request, Response, Router } from "express";
 
 const router = Router();
 
 router.use(tokenAuth);
 
-router.get("/", (request, response, next) => {
-  return response.json({ id: "Millionaire" });
+router.get("/", (request: Request, response: Response, next: NextFunction) => {
+  response.json({ id: "Millionaire" });
 });
 
-router.post("/", (request, response, next) => response.json("{id:'Messi'}"));
+router.post("/", (request: Request, response: Response, next: NextFunction) => {
+  response.json("{id:'Messi'}");
+});
 
 export default router;

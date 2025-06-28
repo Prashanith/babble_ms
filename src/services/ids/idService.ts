@@ -14,7 +14,7 @@ async function loginUser(email:string, password:string, response) {
     if (isAuthSuccess) {
       const res = filterUserObject(user);
       res["access_token"] = generateAccessToken({ id: res._id });
-      return HttpResponse.ok(response, res);
+      return HttpResponse.Ok(response, res);
     } else {
       return HttpResponse.toUnauthorizedError(response, "Invalid Password");
     }
@@ -41,7 +41,7 @@ async function registerUser(email, password, response) {
       });
       const res = filterUserObject(user);
       res["access_token"] = generateAccessToken({ id: res._id });
-      return HttpResponse.ok(response, res);
+      return HttpResponse.Ok(response, res);
     }
   } catch (error) {
     return HttpResponse.toInternalServerError(response);
