@@ -18,7 +18,7 @@ function tokenAuth(
     jwt.verify(
       authToken,
       secrets.ACCESS_TOKEN_SECRET,
-      (err, decoded: jwt.JwtPayload | string | undefined) => {
+      (err, decoded: jwt.JwtPayload | String | undefined) => {
         if (err) {
           HttpResponse.toUnauthorizedError(response);
           return;

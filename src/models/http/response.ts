@@ -30,7 +30,7 @@ class HttpResponse {
   static toBadRequestError(response: Response, message?: String) {
     var error = new HttpError(
       ResponseCodes.BB400,
-      message ? message : "Bad Request Error"
+      message ?? "Bad Request Error"
     );
     var res = new HttpResponse(null, error).toJSON();
     return response.status(400).json(res);
@@ -55,7 +55,7 @@ class HttpResponse {
     return response.status(201).json(res);
   }
 
-  static toUnauthorizedError(response: Response, message?: string) {
+  static toUnauthorizedError(response: Response, message?: String) {
     var error = new HttpError(
       ResponseCodes.BB401,
       message ? message : "Authorization Error Occurred"

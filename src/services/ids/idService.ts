@@ -8,7 +8,7 @@ import {
 } from "../../utils/utils.ts";
 import { Response } from "express";
 
-async function loginUser(email: string, password: string, response: Response) {
+async function loginUser(email: String, password: String, response: Response) {
   try {
     const user = await users.findOne({ email: email }).exec();
     const isAuthSuccess = await verifyHash(password, user.password);
@@ -25,8 +25,8 @@ async function loginUser(email: string, password: string, response: Response) {
 }
 
 async function registerUser(
-  email: string,
-  password: string,
+  email: String,
+  password: String,
   response: Response
 ) {
   try {
