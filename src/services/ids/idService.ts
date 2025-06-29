@@ -14,7 +14,7 @@ async function loginUser(email: String, password: String, response: Response) {
     if (!user) {
       return HttpResponse.toNotFoundError(response, "Not Found");
     } else {
-      const isAuthSuccess = await verifyHash(password, user.password);
+      const isAuthSuccess = await verifyHash(password, user.password ?? "");
       if (isAuthSuccess) {
         const res = filterUserObject(user);
         res["access_token"] = generateAccessToken({ id: res._id });

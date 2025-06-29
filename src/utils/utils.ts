@@ -3,12 +3,15 @@ import jwt from "jsonwebtoken";
 import { secrets } from "./envUtils.ts";
 
 const hashPassword = async (password: String) => {
-  const hashedPassword = await bcrypt.hash(password, 10);
+  const hashedPassword = await bcrypt.hash(password as string, 10);
   return hashedPassword;
 };
 
 const verifyHash = async (password: String, hashedPassword: String) => {
-  const isAuthSuccess = await bcrypt.compare(password, hashedPassword);
+  const isAuthSuccess = await bcrypt.compare(
+    password as string,
+    hashedPassword as string
+  );
   return isAuthSuccess;
 };
 
@@ -25,7 +28,7 @@ const generateAccessToken = (payload: object) =>
   jwt.sign(payload, secrets.ACCESS_TOKEN_SECRET);
 
 const verifyAccessToken = (token: String) =>
-  jwt.verify(token, secrets.ACCESS_TOKEN_SECRET);
+  jwt.verify(token as string, secrets.ACCESS_TOKEN_SECRET);
 
 export {
   hashPassword,
