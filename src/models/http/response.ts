@@ -27,7 +27,7 @@ class HttpResponse {
     return response.status(400).json(res);
   }
 
-  static toBadRequestError(response: Response, message?: String | null) {
+  static toBadRequestError(response: Response, message?: String) {
     var error = new HttpError(
       ResponseCodes.BB400,
       message ? message : "Bad Request Error"
@@ -36,7 +36,7 @@ class HttpResponse {
     return response.status(400).json(res);
   }
 
-  static toConflictError(response: Response, message?: String | null) {
+  static toConflictError(response: Response, message?: String) {
     var error = new HttpError(
       ResponseCodes.BB400,
       message ? message : "Bad Request Error"
@@ -55,7 +55,7 @@ class HttpResponse {
     return response.status(201).json(res);
   }
 
-  static toUnauthorizedError(response: Response, message = null) {
+  static toUnauthorizedError(response: Response, message?: string) {
     var error = new HttpError(
       ResponseCodes.BB401,
       message ? message : "Authorization Error Occurred"

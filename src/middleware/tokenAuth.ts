@@ -3,29 +3,37 @@ import { HttpResponse } from "../models/http/response.ts";
 import { NextFunction, Request, Response } from "express";
 import { secrets } from "../utils/envUtils.ts";
 
-function tokenAuth(request: Request, response: Response, next: NextFunction) {
+function tokenAuth(
+  request: Request,
+  response: Response,
+  next: NextFunction
+): void {
   try {
-    const authToken = String(request.headers["authorization"]).split(" ")[1];
-    if (authToken) {
-      jwt.verify(
-        authToken,
-        secrets.ACCESS_TOKEN_SECRET,
-        function (err, digest: string | jwt.JwtPayload | undefined) {
-          if (err) {
-            return HttpResponse.toUnauthorizedError(response);
-          } else {
-            if (digest && typeof digest == "object")
-              request.body["context"] = { id: digest?.id ?? "" };
-          }
-        }
-      );
-      next();
-    } else {
-      return HttpResponse.toUnauthorizedError(response);
+    const authHeader = request.headers["authorization"];
+    const authToken = authHeader?.split(" ")[1];
+    if (!authToken) {
+      HttpResponse.toUnauthorizedError(response);
+      return;
     }
+    jwt.verify(
+      authToken,
+      secrets.ACCESS_TOKEN_SECRET,
+      (err, decoded: jwt.JwtPayload | string | undefined) => {
+        if (err) {
+          HttpResponse.toUnauthorizedError(response);
+          return;
+        }
+        if (decoded && typeof decoded === "object" && "id" in decoded) {
+          request.body["context"] = {
+            id: (decoded as jwt.JwtPayload).id ?? "",
+          };
+        }
+        next();
+      }
+    );
   } catch (error) {
-    console.log(error);
-    return HttpResponse.toInternalServerError(response);
+    console.error(error);
+    HttpResponse.toInternalServerError(response);
   }
 }
 

@@ -9,20 +9,26 @@ router.get("/", (request: Request, response: Response, next: NextFunction) => {
   response.json("Authentication Service");
 });
 
-router.post("/login", async (request, response, next) => {
-  if (request.body.email && request.body.password) {
-    return await loginUser(request.body.email, request.body.password, response);
-  } else {
-    return HttpResponse.toBadRequestError(
-      response,
-      "Email or Password Cannot be Empty"
-    );
+router.post(
+  "/login",
+  (request: Request, response: Response, next: NextFunction) => {
+    if (request.body.email && request.body.password) {
+      loginUser(request.body.email, request.body.password, response);
+    } else {
+      HttpResponse.toBadRequestError(
+        response,
+        "Email or Password Cannot be Empty"
+      );
+    }
   }
-});
+);
 
-router.post("/register", async (request, response, next) => {
-  const { email, password } = request.body;
-  return await registerUser(email, password, response);
-});
+router.post(
+  "/register",
+  (request: Request, response: Response, next: NextFunction) => {
+    const { email, password } = request.body;
+    registerUser(email, password, response);
+  }
+);
 
 export default router;
