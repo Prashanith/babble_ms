@@ -11,13 +11,17 @@ import { Response } from "express";
 async function loginUser(email: String, password: String, response: Response) {
   try {
     const user = await users.findOne({ email: email }).exec();
-    const isAuthSuccess = await verifyHash(password, user.password);
-    if (isAuthSuccess) {
-      const res = filterUserObject(user);
-      res["access_token"] = generateAccessToken({ id: res._id });
-      return HttpResponse.Ok(response, res);
+    if (!user) {
+      return HttpResponse.toNotFoundError(response, "Not Found");
     } else {
-      return HttpResponse.toUnauthorizedError(response, "Invalid Password");
+      const isAuthSuccess = await verifyHash(password, user.password);
+      if (isAuthSuccess) {
+        const res = filterUserObject(user);
+        res["access_token"] = generateAccessToken({ id: res._id });
+        return HttpResponse.Ok(response, res);
+      } else {
+        return HttpResponse.toUnauthorizedError(response, "Invalid Password");
+      }
     }
   } catch (error) {
     return HttpResponse.toInternalServerError(response);

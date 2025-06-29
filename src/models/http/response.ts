@@ -36,6 +36,15 @@ class HttpResponse {
     return response.status(400).json(res);
   }
 
+  static toNotFoundError(response: Response, message?: String) {
+    var error = new HttpError(
+      ResponseCodes.BB400,
+      message ?? "Bad Request Error"
+    );
+    var res = new HttpResponse(null, error).toJSON();
+    return response.status(400).json(res);
+  }
+
   static toConflictError(response: Response, message?: String) {
     var error = new HttpError(
       ResponseCodes.BB400,

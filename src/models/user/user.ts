@@ -1,37 +1,33 @@
 import mongoose from "mongoose";
-import validator from "../../constants/validator";
-import globals from "./../globals/globals";
+import validator from "../../constants/validator.ts";
+import globals from "./../globals/globals.ts";
 
-const UserEntity = mongoose.Schema({
+const UserEntity = new mongoose.Schema({
   name: {
     type: globals.NameEntity,
     required: false,
   },
   email: {
     type: String,
-    required: true,
-    lowercase: true,
     validate: {
-      validator: (v) => validator.isEmail(v),
+      validator: (v: string) => validator.isEmail(v),
       message: "Invalid Email",
     },
   },
   mobile: {
     type: String,
-    require: false,
     validate: {
-      validator: (v) => validator.isMobile(v),
+      validator: (v: string) => validator.isMobile(v),
       message: "Invalid Mobile Number",
     },
   },
   role: globals.RoleEntity,
   password: {
     type: String,
-    required: true,
-    // validate: {
-    //   validator: (v) => validator.isValidPassword(v),
-    //   message: "The password doesn't meet the security requirements",
-    // },
+    validate: {
+      validator: (v: string) => validator.isValidPassword(v),
+      message: "The password doesn't meet the security requirements",
+    },
   },
 });
 
