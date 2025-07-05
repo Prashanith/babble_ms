@@ -1,34 +1,38 @@
-import { HttpResponse } from "../../models/http/response";
-import { users } from "../../models/user/user";
+import { HttpResponse } from "../../models/http/response.ts";
+import { users } from "../../models/user/user.ts";
 import {
   hashPassword,
   verifyHash,
   filterUserObject,
   generateAccessToken,
-} from "../../utils/utils";
+} from "../../utils/utils.ts";
+import { Response } from "express";
 
-async function loginUser(email, password, response) {
+async function loginUser(email: String, password: String, response: Response) {
   try {
     const user = await users.findOne({ email: email }).exec();
-    const isAuthSuccess = await verifyHash(password, user.password);
-    if (isAuthSuccess) {
-      const res = filterUserObject(user);
-      res["access_token"] = generateAccessToken({ id: res._id });
-      return HttpResponse.ok(response, res);
+    if (!user) {
+      return HttpResponse.toNotFoundError(response, "Not Found");
     } else {
-      return HttpResponse.toUnauthorizedError(response, "Invalid Password");
+      const isAuthSuccess = await verifyHash(password, user.password ?? "");
+      if (isAuthSuccess) {
+        const res = filterUserObject(user);
+        res["access_token"] = generateAccessToken({ id: res._id });
+        return HttpResponse.Ok(response, res);
+      } else {
+        return HttpResponse.toUnauthorizedError(response, "Invalid Password");
+      }
     }
   } catch (error) {
     return HttpResponse.toInternalServerError(response);
   }
-  // if (u) {
-  //   return response.json(u);
-  // } else {
-  //   return response.json("User Not Found");
-  // }
 }
 
-async function registerUser(email, password, response) {
+async function registerUser(
+  email: String,
+  password: String,
+  response: Response
+) {
   try {
     const user = await users.findOne({ email: email }).exec();
     if (user) {
@@ -41,13 +45,11 @@ async function registerUser(email, password, response) {
       });
       const res = filterUserObject(user);
       res["access_token"] = generateAccessToken({ id: res._id });
-      return HttpResponse.ok(response, res);
+      return HttpResponse.Ok(response, res);
     }
   } catch (error) {
     return HttpResponse.toInternalServerError(response);
   }
-
-  // return email + password;
 }
 
 export { loginUser, registerUser };

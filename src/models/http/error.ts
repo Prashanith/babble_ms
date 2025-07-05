@@ -1,12 +1,16 @@
+import { ResponseCodes } from "../../constants/codes.ts";
+
 class HttpError {
-  constructor(code, message) {
+  code: String;
+  message: String;
+  constructor(code: String, message: String | undefined | null) {
     this.code = code;
-    this.message = message;
+    this.message = message ?? "";
   }
   toJSON() {
     return {
-      code:this.code,
-      message:this.message
+      code: this.code,
+      message: this.message,
     };
   }
 }

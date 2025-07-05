@@ -1,7 +1,8 @@
 import express from "express";
-import api from "../api/api";
+import api from "../api/api.ts";
+import { Express } from "express";
 
-const loadServer = (app) => {
+const loadServer = (app: Express) => {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use("/", api());

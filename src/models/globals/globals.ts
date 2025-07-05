@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-const RoleEntity = mongoose.Schema({
+const RoleEntity = new mongoose.Schema({
   type: String,
   enum: ["USER", "SUPPORT", "ADMIN"],
 });
 
-const NameEntity = mongoose.Schema({
+const NameEntity = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
@@ -28,8 +28,7 @@ const NameEntity = mongoose.Schema({
   },
 });
 
-
 export default {
   RoleEntity,
-  NameEntity
+  NameEntity,
 };

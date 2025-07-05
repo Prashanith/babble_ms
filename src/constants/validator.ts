@@ -1,4 +1,4 @@
-const isEmail = (email) => {
+const isEmail = (email: String) => {
   return String(email)
     .toLowerCase()
     .match(
@@ -6,13 +6,13 @@ const isEmail = (email) => {
     );
 };
 
-const isMobile = (mobile) => {
+const isMobile = (mobile: String) => {
   return String(mobile)
     .split("#")[1]
     .match(/^\(?(\d{3})\)?[- ]?(\d{3})[- ]?(\d{4})$/);
 };
 
-const isValidPassword = (password) => {
+const isValidPassword = (password: String) => {
   return String(password).match(
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/
   );
