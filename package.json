@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "type": "module",
+   "type": "commonjs",
   "scripts": {
-    "dev": "esbuild src/server.ts --bundle --platform=node --target=node16 --sourcemap --outfile=dist/app.js && node dist/app.js",
-    "build": "esbuild src/app.ts --bundle --platform=node --target=node16 --outfile=dist/app.js",
+    "dev": "esbuild src/app.ts --bundle --platform=node --target=node20 --format=cjs --sourcemap --outfile=dist/app.js && node dist/app.js",
+    "build": "esbuild src/app.ts --bundle --platform=node --target=node20 --format=cjs --outfile=dist/app.js",
     "start": "node dist/app.js"
   },
   "author": "dev007",

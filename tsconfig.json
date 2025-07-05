@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
-    "target": "ES2022",                    // Latest JavaScript features (ES2022)
-    "module": "nodenext",                   // Use ESM modules for Node.js
-    "moduleResolution": "NodeNext",         // ESM-style resolution (compatible with Node.js)
-    "lib": ["ES2022"],                      // Latest JS standard library features
-    "allowImportingTsExtensions": true,     // Allow importing without the .ts extension
-    "rootDir": "src",                       // Source code directory
-    "outDir": "dist",                       // Output directory after TypeScript compilation
-    "strict": true,                         // Enable all strict type checks
-    "noImplicitAny": true,                  // Disallow the `any` type implicitly
-    "noImplicitThis": true,                 // Disallow implicit `this` types
-    "strictNullChecks": true,               // Ensure strict null checks are applied
-    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in filenames
-    "esModuleInterop": true,                // Allow compatibility between CommonJS and ESM
-    "skipLibCheck": true,                   // Skip type checking for declaration files
-    "allowSyntheticDefaultImports": true,   // Allow default imports in ESM
-    "resolveJsonModule": true,              // Allow importing JSON files as modules
-    "sourceMap": true,                      // Enable source maps for debugging
-    "noEmit": false                         // Let esbuild handle emitting files
+    "target": "ES2022",
+    "module": "ES2022",
+    "moduleResolution": "NodeNext",
+    "lib": ["ES2022"],
+    "allowImportingTsExtensions": false,
+    "rootDir": "src",
+    "outDir": "dist",
+    "strict": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "noEmit": true
   },
-  "include": ["src"],                       // Include all files in the `src` directory
-  "exclude": ["node_modules", "dist"]       // Exclude `node_modules` and `dist` from compilation
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
