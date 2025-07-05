@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-   "type": "commonjs",
+  "type": "commonjs",
   "scripts": {
     "dev": "esbuild src/app.ts --bundle --platform=node --target=node20 --format=cjs --sourcemap --outfile=dist/app.js && node dist/app.js",
     "build": "esbuild src/app.ts --bundle --platform=node --target=node20 --format=cjs --outfile=dist/app.js",
@@ -13,7 +13,8 @@
   "license": "ISC",
   "dependencies": {
     "@mapbox/node-pre-gyp": "^2.0.0",
-    "bcrypt": "^6.0.0",
+    "@types/bcryptjs": "^2.4.6",
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
@@ -22,7 +23,6 @@
     "mongoose": "^8.15.1"
   },
   "devDependencies": {
-    "@types/bcrypt": "^5.0.2",
     "@types/body-parser": "^1.19.6",
     "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
