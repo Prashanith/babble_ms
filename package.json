@@ -5,9 +5,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "build": "tsc",
-    "start": "node dist/app.js",
-    "dev": "ts-node-dev --respawn src/app.ts"
+    "dev": "esbuild src/server.ts --bundle --platform=node --target=node16 --sourcemap --outfile=dist/app.js && node dist/app.js",
+    "build": "esbuild src/app.ts --bundle --platform=node --target=node16 --outfile=dist/app.js",
+    "start": "node dist/app.js"
   },
   "author": "dev007",
   "license": "ISC",
@@ -28,6 +28,7 @@
     "@types/express": "^5.0.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^22.16.0",
+    "esbuild": "^0.25.5",
     "eslint": "^9.28.0",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",

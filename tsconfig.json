@@ -1,24 +1,24 @@
 {
   "compilerOptions": {
-    "target": "ES2022",
-    "module": "nodenext",
-    "moduleResolution": "NodeNext",
-    "lib": ["ES2022"],
-    "allowImportingTsExtensions": true,
-    "rootDir": "src",
-    "outDir": "dist",
-    "strict": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "allowSyntheticDefaultImports": true,
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "noEmit": true
+    "target": "ES2022",                    // Latest JS features
+    "module": "nodenext",                   // ESM modules for Node.js
+    "moduleResolution": "NodeNext",         // ESM-style resolution
+    "lib": ["ES2022"],                      // Target ES2022 for latest language features
+    "allowImportingTsExtensions": true,     // Allow importing without the `.ts` extension
+    "rootDir": "src",                       // Source directory
+    "outDir": "dist",                       // Output directory after compilation
+    "strict": true,                         // Enable all strict type checks
+    "noImplicitAny": true,                  // Disallow any type implicitly
+    "noImplicitThis": true,                 // Disallow implicit `this` types
+    "strictNullChecks": true,               // Ensure null checks are applied
+    "forceConsistentCasingInFileNames": true, // Enforce consistent casing in file names
+    "esModuleInterop": true,                // Enable compatibility between CommonJS and ESM
+    "skipLibCheck": true,                   // Skip type checking for declaration files
+    "allowSyntheticDefaultImports": true,   // Allow default imports in ESM
+    "resolveJsonModule": true,              // Allow importing JSON files as modules
+    "sourceMap": true,                      // Enable source maps for debugging
+    "noEmit": false                         // Let esbuild handle file emitting
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"],                       // Include all files in the 'src' directory
+  "exclude": ["node_modules", "dist"]       // Exclude 'node_modules' and 'dist'
 }
