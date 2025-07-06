@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { loginUser, registerUser } from "../../../services/ids/idService.ts";
-import { HttpResponse } from "../../../models/http/response.ts";
+import { loginUser, registerUser } from "../../../services/ids/idService";
+import { HttpResponse } from "../../../models/http/response";
 import express, { NextFunction, Request, Response, Router } from "express";
 
 const router: Router = Router();

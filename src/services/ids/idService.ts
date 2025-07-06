@@ -1,11 +1,11 @@
-import { HttpResponse } from "../../models/http/response.ts";
-import { users } from "../../models/user/user.ts";
+import { HttpResponse } from "../../models/http/response";
+import { users } from "../../models/user/user";
 import {
   hashPassword,
   verifyHash,
   filterUserObject,
   generateAccessToken,
-} from "../../utils/utils.ts";
+} from "../../utils/utils";
 import { Response } from "express";
 
 async function loginUser(email: String, password: String, response: Response) {

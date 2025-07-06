@@ -1,6 +1,6 @@
 import { Mongoose } from "mongoose";
-import mongooseLoader from "./db.ts";
-import loadServer from "./server.ts";
+import mongooseLoader from "./db";
+import loadServer from "./server";
 import { Express } from "express";
 
 async function initialize(app: Express, mongoose: Mongoose) {

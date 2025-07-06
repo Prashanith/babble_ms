@@ -1,6 +1,6 @@
 import express, { NextFunction, Request, Response, Router } from "express";
-import userRouter from "./routes/user/userRouter.ts";
-import authRouter from "./routes/ids/idsRouter.ts";
+import userRouter from "./routes/user/userRouter";
+import authRouter from "./routes/ids/idsRouter";
 
 const api = () => {
   const router: Router = express.Router();

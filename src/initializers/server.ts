@@ -1,5 +1,5 @@
 import express from "express";
-import api from "../api/api.ts";
+import api from "../api/api";
 import { Express } from "express";
 
 const loadServer = (app: Express) => {
