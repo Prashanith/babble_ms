@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import validator from "../../constants/validator";
 import globals from "./../globals/globals";
+import { collectionMeta } from "../../utils/dbUtils";
 
 const UserEntity = new mongoose.Schema({
   name: {
@@ -21,7 +22,6 @@ const UserEntity = new mongoose.Schema({
       message: "Invalid Mobile Number",
     },
   },
-  role: globals.RoleEntity,
   password: {
     type: String,
     validate: {
@@ -31,6 +31,6 @@ const UserEntity = new mongoose.Schema({
   },
 });
 
-const users = mongoose.model("users", UserEntity);
+const users = mongoose.model(collectionMeta.User, UserEntity);
 
 export { users };
