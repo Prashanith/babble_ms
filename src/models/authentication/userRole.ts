@@ -10,7 +10,7 @@ const UserRoleEntity = new mongoose.Schema({
   },
   role: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: collectionMeta.UserRole,
+    ref: collectionMeta.Role,
     required: true,
   },
   createdAt: { type: Date, default: Date.now },
