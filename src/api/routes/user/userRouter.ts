@@ -10,8 +10,4 @@ router.get("/", (request: Request, response: Response, next: NextFunction) => {
   response.json({ id: "Millionaire" });
 });
 
-router.post("/", (request: Request, response: Response, next: NextFunction) => {
-  response.json("{id:'Messi'}");
-});
-
 export default router;
