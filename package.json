@@ -5,7 +5,8 @@
   "main": "app.js",
   "type": "commonjs",
   "scripts": {
-    "dev": "esbuild src/app.ts --bundle --platform=node --target=node20 --format=cjs --sourcemap --outfile=dist/app.js && node dist/app.js",
+    "dev": "ts-node src/app.ts",
+    "dev-js": "esbuild src/app.ts --bundle --platform=node --target=node20 --format=cjs --sourcemap --outfile=dist/app.js && node dist/app.js",
     "build": "esbuild src/app.ts --bundle --platform=node --target=node20 --format=cjs --outfile=dist/app.js",
     "start": "node dist/app.js"
   },
