@@ -1,3 +1,4 @@
+import { AuthenticationFailed } from "../../constants/errorCodes/ids/authFailed";
 import { UserNotFound } from "../../constants/errorCodes/ids/userNotFound";
 import { HttpResponse } from "../../models/http/response";
 import { users } from "../../models/user/user";
@@ -20,7 +21,7 @@ async function loginUser(email: String, password: String) {
       res["access_token"] = generateAccessToken({ id: res._id });
       return res;
     } else {
-      throw new Exec("");
+      throw new AuthenticationFailed();
     }
   }
 }
@@ -30,10 +31,9 @@ async function registerUser(
   password: String,
   response: Response
 ) {
-  try {
     const user = await users.findOne({ email: email }).exec();
     if (user) {
-      return HttpResponse.toBadRequestError(response, "User already exists");
+      throw new UserNotFound();
     } else {
       const hashedPassword = await hashPassword(password);
       const user = await registerUserUsingIdAndPassword({
@@ -45,9 +45,6 @@ async function registerUser(
       res["access_token"] = generateAccessToken({ id: res._id });
       return HttpResponse.Ok(response, res);
     }
-  } catch (error) {
-    return HttpResponse.toInternalServerError(response);
-  }
 }
 
 export { loginUser, registerUser };

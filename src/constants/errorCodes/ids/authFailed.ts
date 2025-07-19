@@ -6,10 +6,9 @@ class AuthenticationFailed extends Error {
   constructor() {
     super(`Authentication Failed`);
     this.name = "AuthenticationFailed";
-    this.errorCode = ResponseCodes.BB400;
-
+    this.errorCode = ResponseCodes.BB401;
     Object.setPrototypeOf(this, AuthenticationFailed.prototype);
   }
 }
 
-export { UserNotFound };
+export { AuthenticationFailed };

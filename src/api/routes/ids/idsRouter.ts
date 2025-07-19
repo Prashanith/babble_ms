@@ -13,7 +13,7 @@ router.post(
   "/login",
   (request: Request, response: Response, next: NextFunction) => {
     if (request.body.email && request.body.password) {
-      loginUser(request.body.email, request.body.password, response);
+      loginUser(request.body.email, request.body.password);
     } else {
       HttpResponse.toBadRequestError(
         response,
