@@ -1,30 +1,27 @@
+import { UserNotFound } from "../../constants/errorCodes/ids/userNotFound";
 import { HttpResponse } from "../../models/http/response";
 import { users } from "../../models/user/user";
+import { registerUserUsingIdAndPassword } from "../../repositories/idsRepository";
 import {
   hashPassword,
   verifyHash,
   filterUserObject,
   generateAccessToken,
 } from "../../utils/utils";
-import { Response } from "express";
 
-async function loginUser(email: String, password: String, response: Response) {
-  try {
-    const user = await users.findOne({ email: email }).exec();
-    if (!user) {
-      return HttpResponse.toNotFoundError(response, "Not Found");
+async function loginUser(email: String, password: String) {
+  const user = await users.findOne({ email: email }).exec();
+  if (!user) {
+    throw new UserNotFound();
+  } else {
+    const isAuthSuccess = await verifyHash(password, user.password ?? "");
+    if (isAuthSuccess) {
+      const res = filterUserObject(user);
+      res["access_token"] = generateAccessToken({ id: res._id });
+      return res;
     } else {
-      const isAuthSuccess = await verifyHash(password, user.password ?? "");
-      if (isAuthSuccess) {
-        const res = filterUserObject(user);
-        res["access_token"] = generateAccessToken({ id: res._id });
-        return HttpResponse.Ok(response, res);
-      } else {
-        return HttpResponse.toUnauthorizedError(response, "Invalid Password");
-      }
+      throw new Exec("");
     }
-  } catch (error) {
-    return HttpResponse.toInternalServerError(response);
   }
 }
 
@@ -39,9 +36,10 @@ async function registerUser(
       return HttpResponse.toBadRequestError(response, "User already exists");
     } else {
       const hashedPassword = await hashPassword(password);
-      const user = await users.create({
+      const user = await registerUserUsingIdAndPassword({
         email: email,
         password: hashedPassword,
+        response: Response,
       });
       const res = filterUserObject(user);
       res["access_token"] = generateAccessToken({ id: res._id });
