@@ -1,28 +1,23 @@
-import { AuthenticationFailed } from "../../constants/errorCodes/ids/authFailed";
-import { UserAlreadyExists } from "../../constants/errorCodes/ids/userAlreadyExists";
-import { UserNotFound } from "../../constants/errorCodes/ids/userNotFound";
-import { User } from "../../models/user/user";
-import { registerUserUsingIdAndPassword } from "../../repositories/idsRepository";
-import {
-  hashPassword,
-  verifyHash,
-  filterUserObject,
-  generateAccessToken,
-} from "../../utils/utils";
+import { AuthenticationFailed } from '../../constants/errorCodes/ids/authFailed';
+import { UserAlreadyExists } from '../../constants/errorCodes/ids/userAlreadyExists';
+import { UserNotFound } from '../../constants/errorCodes/ids/userNotFound';
+import { User } from '../../models/user/user';
+import { registerUserUsingIdAndPassword } from '../../repositories/idsRepository';
+import { hashPassword, verifyHash, filterUserObject, generateAccessToken } from '../../utils/utils';
 
 /**
  * Handles user login logic
  */
 async function loginUser(email: string, password: string) {
   // 1. Fetch user including the hidden password field
-  const user = await User.findOne({ email }).select("+password").exec();
+  const user = await User.findOne({ email }).select('+password').exec();
 
   if (!user) {
     throw new UserNotFound();
   }
 
   // 2. Verify credentials
-  const isAuthSuccess = await verifyHash(password, user.password ?? "");
+  const isAuthSuccess = await verifyHash(password, user.password ?? '');
   if (!isAuthSuccess) {
     throw new AuthenticationFailed();
   }
@@ -45,7 +40,7 @@ async function registerUser(email: string, password: string) {
   const existingUser = await User.findOne({ email }).exec();
   if (existingUser) {
     // Audit: Use a "UserAlreadyExists" error instead of "UserNotFound"
-    throw new UserAlreadyExists(); 
+    throw new UserAlreadyExists();
   }
 
   // 2. Security: Hash password before saving

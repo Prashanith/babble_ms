@@ -1,4 +1,4 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, { Schema } from 'mongoose';
 
 export interface IName {
   firstName: string;
@@ -12,38 +12,38 @@ const NameSchema = new Schema<IName>(
   {
     firstName: {
       type: String,
-      required: [true, "First name is required"],
+      required: [true, 'First name is required'],
       trim: true,
-      default: "",
+      default: '',
     },
     lastName: {
       type: String,
-      required: [true, "Last name is required"],
+      required: [true, 'Last name is required'],
       trim: true,
-      default: "",
+      default: '',
     },
     middleName: {
       type: String,
       required: false,
       trim: true,
-      default: "",
+      default: '',
     },
     displayName: {
       type: String,
       required: false,
       trim: true,
-      default: "",
+      default: '',
     },
   },
   {
-    _id: false, 
+    _id: false,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
-NameSchema.virtual("fullName").get(function (this: IName) {
-  return `${this.firstName} ${this.middleName ? this.middleName + " " : ""}${this.lastName}`.trim();
+NameSchema.virtual('fullName').get(function (this: IName) {
+  return `${this.firstName} ${this.middleName ? this.middleName + ' ' : ''}${this.lastName}`.trim();
 });
 
 export default {

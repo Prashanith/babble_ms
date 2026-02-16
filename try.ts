@@ -9,7 +9,6 @@
 // console.log(obj1);
 // console.log(obj2);
 
-
 // const { MongoClient, ServerApiVersion } = require('mongodb');
 // const uri = "mongodb+srv://babble_dev_admin:<password>@babble-dev-cluster.dbcbyd7.mongodb.net/?retryWrites=true&w=majority";
 
@@ -37,4 +36,3 @@
 // run().catch(console.dir);
 
 console.log(String('prashanith007@gmail.com  ').replace());
-

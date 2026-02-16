@@ -1,8 +1,8 @@
-import express from "express";
-import dotenv from "dotenv";
-import initialize from "./initializers/initialize";
-import mongoose from "mongoose";
-import { secrets } from "./utils/envUtils";
+import express from 'express';
+import dotenv from 'dotenv';
+import initialize from './initializers/initialize';
+import mongoose from 'mongoose';
+import { secrets } from './utils/envUtils';
 
 dotenv.config();
 
@@ -14,7 +14,7 @@ async function startServer() {
   await initialize(server, mongoose);
 
   server.listen(serverPort, () =>
-    console.log(`Babble Network API Service started at ${serverPort}`)
+    console.log(`Babble Network API Service started at ${serverPort}`),
   );
 }
 

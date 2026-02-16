@@ -1,10 +1,10 @@
-import mongoose, { Schema, Document, Model } from "mongoose";
-import validator from "../../constants/validator";
-import globals from "./../globals/globals";
-import { collectionMeta } from "../../utils/dbUtils";
+import mongoose, { Schema, Document, Model } from 'mongoose';
+import validator from '../../constants/validator';
+import globals from './../globals/globals';
+import { collectionMeta } from '../../utils/dbUtils';
 
 export interface IUser extends Document {
-  name?: any; 
+  name?: any;
   email: string;
   mobile: string;
   password?: string;
@@ -21,31 +21,31 @@ const UserSchema = new Schema<IUser>(
     },
     email: {
       type: String,
-      required: [true, "Email is required"],
+      required: [true, 'Email is required'],
       unique: true,
       trim: true,
       lowercase: true,
       validate: {
         validator: (v: string): boolean => !!validator.isEmail(v),
-        message: "Invalid Email",
+        message: 'Invalid Email',
       },
       index: true,
     },
     mobile: {
       type: String,
-      required: [true, "Mobile number is required"],
+      required: [true, 'Mobile number is required'],
       unique: true,
       trim: true,
       validate: {
         validator: (v: string): boolean => !!validator.isMobile(v),
-        message: "Invalid Mobile Number",
+        message: 'Invalid Mobile Number',
       },
       index: true,
     },
     password: {
       type: String,
-      required: [true, "Password is required"],
-      select: false, 
+      required: [true, 'Password is required'],
+      select: false,
       validate: {
         validator: (v: string): boolean => !!validator.isValidPassword(v),
         message: "The password doesn't meet the security requirements",
@@ -62,7 +62,7 @@ const UserSchema = new Schema<IUser>(
     versionKey: false,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 UserSchema.index({ email: 1, isActive: 1 });

@@ -1,5 +1,5 @@
-import mongoose, { Schema, Document, Model, Types } from "mongoose";
-import { collectionMeta } from "../../utils/dbUtils";
+import mongoose, { Schema, Document, Model, Types } from 'mongoose';
+import { collectionMeta } from '../../utils/dbUtils';
 
 export interface IUserRole extends Document {
   description?: string;
@@ -22,13 +22,13 @@ const UserRoleSchema = new Schema<IUserRole>(
     user: {
       type: Schema.Types.ObjectId,
       ref: collectionMeta.User,
-      required: [true, "User reference is required"],
+      required: [true, 'User reference is required'],
       index: true,
     },
     role: {
       type: Schema.Types.ObjectId,
       ref: collectionMeta.Role,
-      required: [true, "Role reference is required"],
+      required: [true, 'Role reference is required'],
       index: true,
     },
     expiresAt: {
@@ -51,12 +51,12 @@ const UserRoleSchema = new Schema<IUserRole>(
     versionKey: false,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 UserRoleSchema.index({ user: 1, role: 1 }, { unique: true });
 
-UserRoleSchema.virtual("isExpired").get(function (this: IUserRole) {
+UserRoleSchema.virtual('isExpired').get(function (this: IUserRole) {
   if (!this.expiresAt) return false;
   return new Date() > this.expiresAt;
 });
@@ -64,16 +64,13 @@ UserRoleSchema.virtual("isExpired").get(function (this: IUserRole) {
 UserRoleSchema.statics.findValidRoles = function (userId: string | Types.ObjectId) {
   return this.find({
     user: userId,
-    $or: [
-      { expiresAt: null },
-      { expiresAt: { $gt: new Date() } }
-    ]
-  }).populate("role");
+    $or: [{ expiresAt: null }, { expiresAt: { $gt: new Date() } }],
+  }).populate('role');
 };
 
 const UserRole: Model<IUserRole> = mongoose.model<IUserRole>(
   collectionMeta.UserRole,
-  UserRoleSchema
+  UserRoleSchema,
 );
 
 export { UserRole };

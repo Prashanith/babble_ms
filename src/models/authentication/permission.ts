@@ -1,5 +1,5 @@
-import mongoose, { Schema, Document, Model, Types } from "mongoose";
-import { collectionMeta } from "../../utils/dbUtils";
+import mongoose, { Schema, Document, Model, Types } from 'mongoose';
+import { collectionMeta } from '../../utils/dbUtils';
 
 export interface IPermission extends Document {
   name: string;
@@ -15,18 +15,18 @@ const PermissionSchema = new Schema<IPermission>(
   {
     name: {
       type: String,
-      required: [true, "Permission name is required"],
+      required: [true, 'Permission name is required'],
       unique: true,
       trim: true,
-      lowercase: true, 
-      minlength: [3, "Permission name must be at least 3 characters"],
+      lowercase: true,
+      minlength: [3, 'Permission name must be at least 3 characters'],
       index: true,
     },
     description: {
       type: String,
-      required: [true, "Permission description is required"],
+      required: [true, 'Permission description is required'],
       trim: true,
-      maxlength: [500, "Description cannot exceed 500 characters"],
+      maxlength: [500, 'Description cannot exceed 500 characters'],
     },
     isActive: {
       type: Boolean,
@@ -45,18 +45,18 @@ const PermissionSchema = new Schema<IPermission>(
     },
   },
   {
-    timestamps: true, 
+    timestamps: true,
     versionKey: false,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 PermissionSchema.index({ name: 1, isActive: 1 });
 
 const Permission: Model<IPermission> = mongoose.model<IPermission>(
   collectionMeta.Permission,
-  PermissionSchema
+  PermissionSchema,
 );
 
 export { Permission };

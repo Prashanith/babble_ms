@@ -1,5 +1,5 @@
-import mongoose, { Schema, Document, Model, Types } from "mongoose";
-import { collectionMeta } from "../../utils/dbUtils";
+import mongoose, { Schema, Document, Model, Types } from 'mongoose';
+import { collectionMeta } from '../../utils/dbUtils';
 
 export interface IRole {
   name: string;
@@ -15,22 +15,22 @@ const RoleSchema = new Schema<IRole>(
   {
     name: {
       type: String,
-      required: [true, "Role name is required"],
-      unique: true, 
-      trim: true,  
-      minlength: [3, "Role name must be at least 3 characters"],
+      required: [true, 'Role name is required'],
+      unique: true,
+      trim: true,
+      minlength: [3, 'Role name must be at least 3 characters'],
       index: true,
     },
     description: {
       type: String,
-      required: [true, "Role description is required"],
+      required: [true, 'Role description is required'],
       trim: true,
-      maxlength: [500, "Description cannot exceed 500 characters"],
+      maxlength: [500, 'Description cannot exceed 500 characters'],
     },
     isActive: {
       type: Boolean,
       default: true,
-      index: true, 
+      index: true,
     },
     createdBy: {
       type: Schema.Types.ObjectId,
@@ -48,7 +48,7 @@ const RoleSchema = new Schema<IRole>(
     versionKey: false,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-  }
+  },
 );
 
 RoleSchema.index({ name: 1, isActive: 1 });
