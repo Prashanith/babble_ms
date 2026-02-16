@@ -1,14 +1,19 @@
-import { HttpResponse } from "../models/http/response";
-import { users } from "../models/user/user";
+import { User, IUser } from '../models/user/user';
 
-async function registerUserUsingIdAndPassword(email: string, password: string, response: Response) {
+/**
+ * Creates a new user record in the database.
+ *
+ * @param {Partial<IUser>} userData - The user data to persist.
+ * @returns {Promise<IUser>} The newly created user document.
+ * @throws {Error} Database connection or validation error.
+ */
+async function registerUserUsingIdAndPassword(userData: Partial<IUser>): Promise<IUser> {
   try {
-    const user = await users.create({
-      email: email,
-      password: password,
-    });
-  } catch (error) {
-    return HttpResponse.toInternalServerError(response);
+    const user = await User.create(userData);
+
+    return user;
+  } catch (error: any) {
+    throw error;
   }
 }
 

@@ -1,16 +1,12 @@
-import jwt from "jsonwebtoken";
-import { HttpResponse } from "../models/http/response";
-import { NextFunction, Request, Response } from "express";
-import { secrets } from "../utils/envUtils";
+import jwt from 'jsonwebtoken';
+import { HttpResponse } from '../models/http/response';
+import { NextFunction, Request, Response } from 'express';
+import { secrets } from '../utils/envUtils';
 
-function tokenAuth(
-  request: Request,
-  response: Response,
-  next: NextFunction
-): void {
+function tokenAuth(request: Request, response: Response, next: NextFunction): void {
   try {
-    const authHeader = request.headers["authorization"];
-    const authToken = authHeader?.split(" ")[1];
+    const authHeader = request.headers['authorization'];
+    const authToken = authHeader?.split(' ')[1];
     if (!authToken) {
       HttpResponse.toUnauthorizedError(response);
       return;
@@ -23,13 +19,13 @@ function tokenAuth(
           HttpResponse.toUnauthorizedError(response);
           return;
         }
-        if (decoded && typeof decoded === "object" && "id" in decoded) {
-          request.body["context"] = {
-            id: (decoded as jwt.JwtPayload).id ?? "",
+        if (decoded && typeof decoded === 'object' && 'id' in decoded) {
+          request.body['context'] = {
+            id: (decoded as jwt.JwtPayload).id ?? '',
           };
         }
         next();
-      }
+      },
     );
   } catch (error) {
     console.error(error);
