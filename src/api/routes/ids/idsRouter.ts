@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
-import { loginUser, registerUser } from "../../../services/ids/idService.ts";
-import { HttpResponse } from "../../../models/http/response.ts";
-import express, { NextFunction, Request, Response, Router } from "express";
+import { loginUser, registerUser } from "../../../services/ids/idService";
+import { HttpResponse } from "../../../models/http/response";
+import { NextFunction, Request, Response, Router } from "express";
 
 const router: Router = Router();
 
@@ -13,7 +13,7 @@ router.post(
   "/login",
   (request: Request, response: Response, next: NextFunction) => {
     if (request.body.email && request.body.password) {
-      loginUser(request.body.email, request.body.password, response);
+      loginUser(request.body.email, request.body.password);
     } else {
       HttpResponse.toBadRequestError(
         response,

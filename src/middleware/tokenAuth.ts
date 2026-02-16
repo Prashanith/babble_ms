@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
-import { HttpResponse } from "../models/http/response.ts";
+import { HttpResponse } from "../models/http/response";
 import { NextFunction, Request, Response } from "express";
-import { secrets } from "../utils/envUtils.ts";
+import { secrets } from "../utils/envUtils";
 
 function tokenAuth(
   request: Request,

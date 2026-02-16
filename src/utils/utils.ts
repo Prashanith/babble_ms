@@ -1,6 +1,6 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { secrets } from "./envUtils.ts";
+import { secrets } from "./envUtils";
 
 const hashPassword = async (password: String) => {
   const hashedPassword = await bcrypt.hash(password as string, 10);

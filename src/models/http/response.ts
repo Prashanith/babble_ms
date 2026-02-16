@@ -1,6 +1,6 @@
 /* eslint-disable no-debugger */
-import { HttpError } from "./error.ts";
-import { ResponseCodes } from "../../constants/codes.ts";
+import { HttpError } from "./error";
+import { ResponseCodes } from "../../constants/codes";
 import { Response } from "express";
 
 class HttpResponse {

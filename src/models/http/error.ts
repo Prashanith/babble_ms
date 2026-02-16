@@ -1,4 +1,4 @@
-import { ResponseCodes } from "../../constants/codes.ts";
+import { ResponseCodes } from "../../constants/codes";
 
 class HttpError {
   code: String;
